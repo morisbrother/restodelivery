@@ -1,0 +1,37 @@
+{
+  "Name": "АС-3 Максимальний",
+  "Level": "АС-3",
+  "Description": "Максимальний рівень для критичних систем",
+  "Policies": [
+    { "Name": "LockoutDuration", "ProfileLevel": "АС-3", "Risk": "High", "Status": "Не застосовано", "Explanation": "Мінімізує брутфорс." },
+    { "Name": "LockoutBadCount", "ProfileLevel": "АС-3", "Risk": "High", "Status": "Не застосовано", "Explanation": "Обмеження спроб входу." },
+    { "Name": "Firewall Public", "ProfileLevel": "АС-3", "Risk": "Critical", "Status": "Не застосовано", "Explanation": "Брандмауер публічний профіль." },
+    { "Name": "IPsec", "ProfileLevel": "АС-3", "Risk": "Critical", "Status": "Не застосовано", "Explanation": "Захищені канали." },
+    { "Name": "SMBv1 Off", "ProfileLevel": "АС-3", "Risk": "Critical", "Status": "Не застосовано", "Explanation": "Відключення застарілого протоколу." },
+    { "Name": "BitLocker", "ProfileLevel": "АС-3", "Risk": "Critical", "Status": "Не застосовано", "Explanation": "TPM + RecoveryKey." },
+    { "Name": "LSA Protection", "ProfileLevel": "АС-3", "Risk": "High", "Status": "Не застосовано", "Explanation": "Захист LSASS." },
+    { "Name": "Secure Boot", "ProfileLevel": "АС-3", "Risk": "High", "Status": "Не застосовано", "Explanation": "Контроль завантаження." },
+    { "Name": "AppLocker", "ProfileLevel": "АС-3", "Risk": "High", "Status": "Не застосовано", "Explanation": "Контроль виконання." },
+    { "Name": "Log Retention", "ProfileLevel": "АС-3", "Risk": "Medium", "Status": "Не застосовано", "Explanation": "Заборона перезапису без резервування." }
+  ],
+  "TechnicalRequirements": {
+    "identification_authentication": "Multi-factor, hardware backed",
+    "access_control": "Жорсткий RBAC, адміністративні процедури",
+    "audit": "Повний аудит дій адміністраторів",
+    "integrity_control": "Secure Boot, WDAC, Memory Integrity",
+    "fault_tolerance": "Кластеризація критичних служб",
+    "backup_recovery": "Дедупліковані резервні копії",
+    "secure_channels": "IPsec обов'язково",
+    "malware_protection": "EDR, анти-експлойт",
+    "environment_security": "Розділення мереж, фізична охорона"
+  },
+  "OrganizationalRequirements": [
+    "documentation",
+    "access control rules",
+    "physical protection",
+    "administrator procedures",
+    "backup rules",
+    "incident management",
+    "security roles"
+  ]
+}
