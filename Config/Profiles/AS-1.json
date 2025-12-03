@@ -1,0 +1,32 @@
+{
+  "Name": "АС-1 Базовий",
+  "Level": "АС-1",
+  "Description": "Мінімальний рівень захисту для базових систем",
+  "Policies": [
+    { "Name": "MinPasswordLength", "ProfileLevel": "АС-1", "Risk": "Medium", "Status": "Не застосовано", "Explanation": "Мінімальна довжина пароля згідно НД ТЗІ." },
+    { "Name": "MaxPasswordAge", "ProfileLevel": "АС-1", "Risk": "Medium", "Status": "Не застосовано", "Explanation": "Паролі повинні змінюватися регулярно." },
+    { "Name": "Firewall Domain", "ProfileLevel": "АС-1", "Risk": "High", "Status": "Не застосовано", "Explanation": "Брандмауер має бути активним у домені." },
+    { "Name": "Guest Off", "ProfileLevel": "АС-1", "Risk": "High", "Status": "Не застосовано", "Explanation": "Гостьовий обліковий запис вимкнено." },
+    { "Name": "Audit Logon", "ProfileLevel": "АС-1", "Risk": "Low", "Status": "Не застосовано", "Explanation": "Аудит подій входу." }
+  ],
+  "TechnicalRequirements": {
+    "identification_authentication": "Паролі, блокування сесій, обмеження входів",
+    "access_control": "Групи безпеки, мінімальні привілеї",
+    "audit": "Увімкнений аудит ключових подій",
+    "integrity_control": "Контроль цілісності системних файлів",
+    "fault_tolerance": "Резервні копії базових налаштувань",
+    "backup_recovery": "Планове резервування конфігурацій",
+    "secure_channels": "Використання захищених протоколів",
+    "malware_protection": "Антивірус базового рівня",
+    "environment_security": "Фізичний доступ контрольовано"
+  },
+  "OrganizationalRequirements": [
+    "documentation",
+    "access control rules",
+    "physical protection",
+    "administrator procedures",
+    "backup rules",
+    "incident management",
+    "security roles"
+  ]
+}

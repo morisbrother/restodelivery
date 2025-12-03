@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ASConfigurator</RootNamespace>
+    <AssemblyName>ASConfigurator</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="UI\**\*.cs" />
+    <Compile Include="Core\**\*.cs" />
+    <Compile Include="Infrastructure\**\*.cs" />
+    <Compile Include="Plugins\**\*.cs" />
+    <None Include="Config\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Reports\Docx\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Reports\Pdf\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="portable.mode" CopyToOutputDirectory="PreserveNewest" Condition="Exists('portable.mode')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.2" />
+    <PackageReference Include="PdfSharpCore" Version="1.3.72" />
+  </ItemGroup>
+</Project>
