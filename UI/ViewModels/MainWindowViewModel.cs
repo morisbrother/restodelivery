@@ -62,7 +62,7 @@ namespace ASConfigurator.UI.ViewModels
             SelfHealingCommand = new RelayCommand(StartSelfHealing);
             AvailableModes = new ObservableCollection<string>(new[] { "Training", "Audit", "Apply" });
 
-            Task.Run(async () => await RefreshAsync());
+            _ = RefreshAsync();
         }
 
         public ObservableCollection<string> AvailableModes { get; }
