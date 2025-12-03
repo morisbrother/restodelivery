@@ -1,0 +1,34 @@
+{
+  "Name": "АС-2 Поглиблений",
+  "Level": "АС-2",
+  "Description": "Середній рівень захисту для корпоративних систем",
+  "Policies": [
+    { "Name": "PasswordHistory", "ProfileLevel": "АС-2", "Risk": "High", "Status": "Не застосовано", "Explanation": "Історія паролів для запобігання повторення." },
+    { "Name": "LockoutBadCount", "ProfileLevel": "АС-2", "Risk": "High", "Status": "Не застосовано", "Explanation": "Блокування після N спроб." },
+    { "Name": "LockoutDuration", "ProfileLevel": "АС-2", "Risk": "Medium", "Status": "Не застосовано", "Explanation": "Тривалість блокування облікового запису." },
+    { "Name": "Firewall Private", "ProfileLevel": "АС-2", "Risk": "High", "Status": "Не застосовано", "Explanation": "Брандмауер у приватному профілі." },
+    { "Name": "RDP", "ProfileLevel": "АС-2", "Risk": "High", "Status": "Не застосовано", "Explanation": "RDP з NLA та захистом." },
+    { "Name": "USBSTOR", "ProfileLevel": "АС-2", "Risk": "Medium", "Status": "Не застосовано", "Explanation": "Контроль USB пристроїв." },
+    { "Name": "BitLocker", "ProfileLevel": "АС-2", "Risk": "Critical", "Status": "Не застосовано", "Explanation": "Шифрування диску з TPM та Recovery Key." }
+  ],
+  "TechnicalRequirements": {
+    "identification_authentication": "Розширені політики паролів та блокування",
+    "access_control": "RBAC, AppLocker",
+    "audit": "Розширений аудит політик, привілеїв, об'єктів",
+    "integrity_control": "LSA Protection, Credential Guard",
+    "fault_tolerance": "Резервування системних налаштувань",
+    "backup_recovery": "Чіткі процедури відновлення",
+    "secure_channels": "TLS, IPSec для критичних потоків",
+    "malware_protection": "EDR/антивірус корпоративний",
+    "environment_security": "Моніторинг логів та інцидентів"
+  },
+  "OrganizationalRequirements": [
+    "documentation",
+    "administrative_policies",
+    "physical_security",
+    "user_training",
+    "incident_management",
+    "role_model",
+    "data_classification"
+  ]
+}
