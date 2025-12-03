@@ -1,0 +1,95 @@
+<Window x:Class="ASConfigurator.UI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ASConfigurator.UI.ViewModels"
+        mc:Ignorable="d"
+        Title="АС-Configurator СЗІ (Enterprise Edition)" Height="720" Width="1180">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.ColumnSpan="2">
+            <TextBlock Text="Режим:" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <ComboBox Width="180" SelectedItem="{Binding SelectedMode}" ItemsSource="{Binding AvailableModes}" />
+            <CheckBox Content="Portable" IsChecked="{Binding IsPortable}" Margin="16,0,0,0" IsEnabled="False"/>
+            <Button Content="Оновити політики" Command="{Binding RefreshCommand}" Margin="16,0,0,0" />
+            <Button Content="Генерувати паспорт" Command="{Binding GeneratePassportCommand}" Margin="8,0,0,0" />
+            <Button Content="Self-Healing" Command="{Binding SelfHealingCommand}" Margin="8,0,0,0" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10" Background="#f6f6f6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Профілі" Margin="8">
+                <ListView ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Назва" DisplayMemberBinding="{Binding Name}" Width="180" />
+                            <GridViewColumn Header="Рівень" DisplayMemberBinding="{Binding Level}" Width="80" />
+                            <GridViewColumn Header="Опис" DisplayMemberBinding="{Binding Description}" Width="240" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+            <GroupBox Header="Ризики" Grid.Row="1" Margin="8">
+                <StackPanel>
+                    <TextBlock Text="Critical: {Binding RiskSummary.Critical}" />
+                    <TextBlock Text="High: {Binding RiskSummary.High}" />
+                    <TextBlock Text="Medium: {Binding RiskSummary.Medium}" />
+                    <TextBlock Text="Low: {Binding RiskSummary.Low}" />
+                    <Button Content="Оновити ризик-матрицю" Command="{Binding AnalyzeRiskCommand}" Margin="0,8,0,0" />
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Вимоги" Margin="8">
+                <DataGrid ItemsSource="{Binding DisplayedPolicies}" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Параметр" Binding="{Binding Name}" Width="200" />
+                        <DataGridTextColumn Header="Профіль" Binding="{Binding ProfileLevel}" Width="80" />
+                        <DataGridTextColumn Header="Стан" Binding="{Binding Status}" Width="120" />
+                        <DataGridCheckBoxColumn Header="GPO" Binding="{Binding IsGpoControlled}" Width="60" />
+                        <DataGridTextColumn Header="GPO Name" Binding="{Binding GpoName}" Width="120" />
+                        <DataGridTextColumn Header="Ризик" Binding="{Binding Risk}" Width="80" />
+                        <DataGridTextColumn Header="Оцінка відповідності" Binding="{Binding Compliance}" Width="140" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <GroupBox Header="Пояснення" Grid.Row="1" Margin="8">
+                <DockPanel>
+                    <ListBox ItemsSource="{Binding DisplayedPolicies}" SelectedItem="{Binding SelectedPolicy}" DisplayMemberPath="Name" Width="240" />
+                    <StackPanel Margin="8">
+                        <Button Content="Пояснити параметр" Command="{Binding ExplainPolicyCommand}" />
+                        <TextBlock TextWrapping="Wrap" Margin="0,8,0,0" Text="{Binding Explanation}" />
+                    </StackPanel>
+                </DockPanel>
+            </GroupBox>
+        </Grid>
+
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
+            <StatusBarItem Content="АС-Configurator СЗІ" />
+            <StatusBarItem Content="AS-1: {Binding ComplianceScores.AS1}%" />
+            <StatusBarItem Content="AS-2: {Binding ComplianceScores.AS2}%" />
+            <StatusBarItem Content="AS-3: {Binding ComplianceScores.AS3}%" />
+        </StatusBar>
+    </Grid>
+</Window>

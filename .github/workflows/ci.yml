@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+      - name: Restore
+        run: dotnet restore ASConfigurator.csproj
+      - name: Build
+        run: dotnet build ASConfigurator.csproj --configuration Release
+      - name: Test
+        run: dotnet test ASConfigurator.Tests.csproj --configuration Release
+      - name: Publish
+        run: dotnet publish ASConfigurator.csproj -c Release -o out
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: asconfigurator-artifacts
+          path: |
+            out
+            Reports/Docx
+            Reports/Pdf
